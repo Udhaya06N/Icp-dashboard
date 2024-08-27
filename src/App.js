@@ -1,24 +1,81 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import "./App.css";
+import DashboardNavbar from "./navbar/DashboardNavbar";
+import Home from "./routes/Home";
+import Governance from "./routes/Governance";
+import Neurons from "./routes/Neurons";
+import Network from "./routes/Network";
+import Releases from "./routes/Releases";
+import Canisters from "./routes/Canisters";
+import Icp from "./routes/Icp";
+import Sns from "./routes/Sns";
+import ChainFusion from "./routes/ChainFusion";
+import DashboardFooter from "./components/DashboardFooter";
+import NodeMachines from "./components/NodeMachines";
+import NodeProviders from "./components/NodeProviders";
+import DataCenters from "./components/DataCenters";
+import Subnets from "./components/Subnets";
+import NeuronsTable from "./components/NeuronsTable";
+import Proposals from "./components/Proposals";
+import IcpTransactions from "./components/IcpTransactions";
+import DashboardMap from "./components/DashboardMap";
+import Overview from "./components/Overview";
+import PowerConsumptionGraph from "./components/PowerConsumptionGraph";
+import IcpRates from "./components/IcpRates";
+import IcpGraphs from "./components/IcpGraphs";
+import { useState } from "react";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 function App() {
+  const [mode, setMode] = useState("light");
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+
+  const route = createBrowserRouter(
+    createRoutesFromElements(
+      <Route
+        path="/"
+        element={<DashboardNavbar mode={mode} setMode={setMode} />}
+      >
+        <Route index element={<Home />} />
+        <Route path="governance" element={<Governance />} />
+        <Route path="neurons" element={<Neurons />} />
+        <Route path="network" element={<Network />} />
+        <Route path="releases" element={<Releases />} />
+        <Route path="canisters" element={<Canisters />} />
+        <Route path="icp" element={<Icp />} />
+        <Route path="sns" element={<Sns />} />
+        <Route path="chain-fusion" element={<ChainFusion />} />
+      </Route>
+    )
+  );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <RouterProvider router={route} />
+      <DashboardMap />
+      <Overview />
+      <IcpGraphs />
+      <IcpRates />
+      <PowerConsumptionGraph />
+      <IcpTransactions />
+      <Proposals />
+      <NeuronsTable />
+      <Subnets />
+      <DataCenters />
+      <NodeProviders />
+      <NodeMachines />
+      <DashboardFooter />
+    </ThemeProvider>
   );
 }
 
