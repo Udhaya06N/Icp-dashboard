@@ -26,7 +26,10 @@ const Android12Switch = styled(Switch)(({ theme }) => ({
   width: 60,
   "& .MuiSwitch-track": {
     borderRadius: 22 / 1,
-    backgroundColor: theme.palette.mode === "dark" ? "#ccc" : "#333",
+    backgroundColor:
+      theme.palette.mode === "dark"
+        ? "rgb(243, 234, 255) !important"
+        : "rgb(7, 6, 13) !important",
     opacity: 1,
     position: "relative",
     width: "100%",
@@ -87,7 +90,8 @@ const Links = styled(NavLink)(({ theme }) => ({
   padding: "8px 6px",
   margin: "0 10px",
   cursor: "pointer",
-  color: "black",
+  color:
+    theme.palette.mode === "dark" ? "rgb(244, 243, 243)" : "rgb(33, 33, 33)",
   "&:hover": {
     backgroundColor: "rgb(205, 230, 231)",
     borderRadius: "30px",
@@ -109,7 +113,7 @@ const DashboardNavbar = ({ mode, setMode }) => {
   return (
     <>
       <StyledNavbar>
-        <Box ml={2}>
+        <Box ml={2} sx={{ cursor: "pointer" }}>
           <img
             src="https://dashboard.internetcomputer.org/_next/static/media/icp_dashboard_infinity_logo_light_theme.c2986525.svg"
             alt="Lcp logo"

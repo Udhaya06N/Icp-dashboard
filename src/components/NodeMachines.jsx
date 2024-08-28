@@ -235,7 +235,7 @@ const NodeMachines = () => {
                   >
                     <ArrowDropDownIcon
                       sx={{
-                        backgroundColor: "rgb(226, 225, 225)",
+                        backgroundColor: "#f6f6f9",
                         padding: "7px",
                         borderRadius: "50%",
                         marginRight: "30px",

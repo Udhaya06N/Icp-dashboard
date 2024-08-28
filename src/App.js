@@ -29,7 +29,8 @@ import PowerConsumptionGraph from "./components/PowerConsumptionGraph";
 import IcpRates from "./components/IcpRates";
 import IcpGraphs from "./components/IcpGraphs";
 import { useState } from "react";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
+import DashboardWrapper from "./navbar/DashboardWrapper";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -44,7 +45,7 @@ function App() {
     createRoutesFromElements(
       <Route
         path="/"
-        element={<DashboardNavbar mode={mode} setMode={setMode} />}
+        element={<DashboardWrapper mode={mode} setMode={setMode} />}
       >
         <Route index element={<Home />} />
         <Route path="governance" element={<Governance />} />
@@ -61,20 +62,22 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <RouterProvider router={route} />
-      <DashboardMap />
-      <Overview />
-      <IcpGraphs />
-      <IcpRates />
-      <PowerConsumptionGraph />
-      <IcpTransactions />
-      <Proposals />
-      <NeuronsTable />
-      <Subnets />
-      <DataCenters />
-      <NodeProviders />
-      <NodeMachines />
-      <DashboardFooter />
+      <Box backgroundColor={"background.default"} color={"text.primary"}>
+        <RouterProvider router={route} />
+        <DashboardMap />
+        <Overview />
+        <IcpGraphs />
+        <IcpRates />
+        <PowerConsumptionGraph />
+        <IcpTransactions />
+        <Proposals />
+        <NeuronsTable />
+        <Subnets />
+        <DataCenters />
+        <NodeProviders />
+        <NodeMachines />
+        <DashboardFooter />
+      </Box>
     </ThemeProvider>
   );
 }

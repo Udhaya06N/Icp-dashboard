@@ -1,11 +1,19 @@
 import React from "react";
 import "leaflet-defaulticon-compatibility";
 import { CircleMarker, MapContainer, TileLayer } from "react-leaflet";
-import { Box, Card, CardContent, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardContent,
+  Container,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 const DashboardMap = () => {
+  const theme = useTheme();
   let markers;
 
   const addMarkers = () => {
@@ -28,6 +36,7 @@ const DashboardMap = () => {
         width: "85%",
         marginTop: "30px",
         marginBottom: "7%",
+        backgroundColor: theme.palette.background.default,
       }}
     >
       <Box
@@ -63,7 +72,10 @@ const DashboardMap = () => {
         <Box
           sx={{
             position: "relative",
-            background: "radial-gradient(ellipse at center,#fff0 30%,#fff 70%)",
+            background:
+              theme.palette.mode === "dark"
+                ? "radial-gradient(ellipse at center,#0000 30%,#000 70%)"
+                : "radial-gradient(ellipse at center,#fff0 30%,#fff 70%)",
             top: 0,
             left: 0,
             width: "100%",
@@ -99,7 +111,7 @@ const DashboardMap = () => {
           justifyContent: "center",
           flexDirection: "row",
           fontSize: "15px",
-          color: "#110128",
+          color: theme.palette.mode === "dark" ? "#ccc" : "#110128",
         }}
       >
         <Box
@@ -155,7 +167,7 @@ const DashboardMap = () => {
           fontSize="14px"
           display="flex"
           justifyContent="center"
-          color="#110128"
+          sx={{ color: theme.palette.mode === "dark" ? "#ccc" : "#110128" }}
         >
           Upcoming Node Machines
         </Typography>
@@ -317,7 +329,10 @@ const DashboardMap = () => {
           top: "80px",
           right: 0,
           maxWidth: 400,
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backgroundColor:
+            theme.palette.mode === "dark"
+              ? "black"
+              : "rgba(255, 255, 255, 0.8)",
           zIndex: 1000,
           padding: "20px",
           borderRadius: 2,

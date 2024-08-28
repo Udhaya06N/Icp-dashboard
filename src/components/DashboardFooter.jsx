@@ -35,9 +35,10 @@ const supportLinks = [
   "Developer Grants",
 ];
 
-const FooterBox = styled(Box)({
-  backgroundColor: "rgb(243, 243, 243)",
-});
+const FooterBox = styled(Box)(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark" ? "#121212" : "rgb(243, 243, 243)",
+}));
 
 const StyledLinks = styled(Link)({
   color: "grey",
